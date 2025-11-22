@@ -112,7 +112,7 @@ val msg = helloTools()
 git submodule update --remote --merge
 ```
 
-进入主项目根目录执行（上传子模块和主模块）：
+进入主项目根目录执行：（上传子模块和主模块）：
 
 ```bash
 git submodule foreach --recursive "git add .; git commit -m 'auto update submodule'; git push"
