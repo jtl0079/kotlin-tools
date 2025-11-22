@@ -134,7 +134,7 @@ fun DatePicker(
 @Composable
 fun DatePickerOutlinedButton(
     modifier: Modifier = Modifier,
-    onDateSelected: (Int, Int, Int) -> Unit
+    onDateSelected: (Int, Int, Int) -> Unit = {_, _, _, ->}
 ) {
     DatePicker(
         modifier = modifier,
