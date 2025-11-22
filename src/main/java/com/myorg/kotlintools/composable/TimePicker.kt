@@ -22,6 +22,23 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import java.util.Calendar
 
+/**
+ * Stateless 时间选择组件（无状态）
+ *
+ * 该组件本身不持有时间状态，只负责根据传入的 hour 和 minute 展示时间，
+ * 当用户选择新时间时，通过 onTimeSelected 回调通知外部。
+ *
+ * 适合用于：由 ViewModel 或父组件统一管理时间状态的场景。
+ *
+ * @param hour 当前小时（0 - 23）
+ * @param minute 当前分钟（0 - 59）
+ * @param modifier Compose 修饰符
+ * @param is24Hour 是否使用 24 小时制
+ * @param onTimeSelected 当用户选择新时间时回调 (hour, minute)
+ * @param content 可自定义的 UI 内容，参数为：
+ * - timeText: 格式化后的时间字符串，例如 "09:30"
+ * - onClick: 用于触发时间选择器的点击事件
+ */
 @Composable
 fun TimePickerStateless(
     hour: Int,
@@ -55,7 +72,19 @@ fun TimePickerStateless(
     content(formattedTime, openDialog)
 }
 
-
+/**
+ * Stateful 时间选择组件（有状态）
+ *
+ * 内部维护时间状态（hour、minute），并在选择后自动更新。
+ * 对外只需监听 onTimeSelected 即可。
+ *
+ * 适合用于：简单页面直接使用，不需要 ViewModel 管理状态的情况。
+ *
+ * @param modifier Compose 修饰符
+ * @param is24Hour 是否使用 24 小时制
+ * @param onTimeSelected 时间更新回调
+ * @param content 自定义 UI 内容
+ */
 @Composable
 fun TimePicker(
     modifier: Modifier = Modifier,
@@ -92,6 +121,17 @@ fun TimePicker(
 }
 
 
+/**
+ * 预设样式的时间选择按钮（OutlinedButton 风格）
+ *
+ * 内部使用 TimePicker，并提供默认 UI：
+ * 图标 + 时间文本 的组合。
+ *
+ * 推荐用于表单、预约、设置页面。
+ *
+ * @param modifier Compose 修饰符
+ * @param onTimeSelected 时间选择回调
+ */
 @Composable
 fun TimePickerOutlinedButton(
     modifier: Modifier = Modifier,
