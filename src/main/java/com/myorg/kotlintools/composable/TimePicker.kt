@@ -1,4 +1,4 @@
-package com.example.miniproject.kotlinTools.Composable
+package com.myorg.kotlintools.composable
 
 import android.app.TimePickerDialog
 import androidx.compose.foundation.layout.Spacer

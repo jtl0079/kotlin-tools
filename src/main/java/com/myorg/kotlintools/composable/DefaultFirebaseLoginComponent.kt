@@ -1,4 +1,4 @@
-package com.example.miniproject.kotlinTools.Composable
+package com.myorg.kotlintools.composable
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement

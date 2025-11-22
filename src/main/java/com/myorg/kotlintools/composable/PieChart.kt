@@ -1,4 +1,4 @@
-package com.example.project.kotlinTools
+package com.myorg.kotlintools.composable
 
 
 import androidx.compose.animation.AnimatedVisibility

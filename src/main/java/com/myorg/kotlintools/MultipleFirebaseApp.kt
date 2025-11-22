@@ -1,4 +1,4 @@
-package com.example.miniproject.kotlinTools
+package com.myorg.kotlintools
 
 import android.content.Context
 import androidx.compose.ui.platform.LocalContext

@@ -1,4 +1,4 @@
-package com.example.project.kotlinTools
+package com.myorg.kotlintools
 
 import androidx.compose.ui.graphics.Color
 
