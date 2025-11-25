@@ -31,6 +31,12 @@ YourProject
 
 ```kotlin
 include(":libs:kotlin-tools")
+
+或
+
+include(":kotlin-tools")
+project(":kotlin-tools").projectDir = file("libs/kotlin-tools")
+
 ```
 
 ---

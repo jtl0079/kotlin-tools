@@ -173,6 +173,8 @@ fun <T> Iterable<T>.sumWith(operator: ValueOperator<T>): T =
 fun <T> Sequence<T>.sumWith(operator: ValueOperator<T>): T =
     fold(operator.zero()) { acc, value -> operator.add(acc, value) }
 
+
+
 /** 内联求和辅助函数，避免创建中间集合 */
 inline fun <T, E> List<E>.sumWith(
     operator: ValueOperator<T>,

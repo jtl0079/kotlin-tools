@@ -1,5 +1,6 @@
 package com.myorg.kotlintools
 
+import com.myorg.kotlintools.report.domain.model.ReportEntry
 import java.time.Instant
 import java.time.YearMonth
 import java.time.ZoneId
@@ -10,6 +11,8 @@ import kotlin.concurrent.write
 
 /**
  *
+ * UI ，ViewModel，Service， Use Case ，Repository，Repository interface，DAO ，Domain
+ *
  * 功能介绍
  * 1. 储存单个 reportData（key，value，精确时间）
  * 2. 计算不同 key 的不同年份和不同月份的数据总和（baseValue + sum（incrementalData））
@@ -17,20 +20,19 @@ import kotlin.concurrent.write
  *
  */
 
-
 /**
- * 原始报表数据条目
- *
- * @param T 值类型
- * @property key 数据分类键（如：产品ID、部门代码）
- * @property value 数据值
- * @property timestamp 数据产生的精确时间
+ * 报表聚合结果（值对象）
  */
-data class ReportEntry<T>(
+data class ReportSummary<T>(
     val key: String,
-    val value: T,
-    val timestamp: Instant
+    val month: YearMonth,
+    val baseValue: T,
+    val incrementalValue: T,
+    val totalValue: T,
+    val incrementalCount: Int
 )
+
+
 
 
 /**
@@ -47,7 +49,8 @@ data class ReportEntry<T>(
  */
 class MonthlyBucket<T>(
     private val operator: ValueOperator<T>
-) {
+)
+{
 
     private val lock = ReentrantReadWriteLock()
 
