@@ -2,6 +2,7 @@ package com.myorg.kotlintools.report
 
 
 
+import com.myorg.kotlintools.ReportStats
 import com.myorg.kotlintools.ValueOperator
 import com.myorg.kotlintools.report.domain.model.ReportEntry
 import com.myorg.kotlintools.report.domain.repository.ReportRepository
@@ -13,7 +14,6 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.locks.ReentrantReadWriteLock
 import kotlin.concurrent.read
 import kotlin.concurrent.write
-
 
 
 // ============================================================================
@@ -171,7 +171,7 @@ class InMemoryReportRepository<T>(
         return bucketOrNull(key, month)?.getIncrementalEntries() ?: emptyList()
     }
 
-    override fun stats(): ReportStats {
+    fun stats(): ReportStats {
         var bucketCount = 0
         var incrementalCount = 0
 

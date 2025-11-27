@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.compose.ui.platform.LocalContext
 import com.google.firebase.FirebaseApp
 
-
 /**
  * 创建多个独立的 FirebaseApp 实例。
  *
@@ -32,7 +31,6 @@ fun createMultipleFirebaseApp(
     context: Context ,
     n: Int
 ): Map<String, FirebaseApp> {
-
     val originalOptions = FirebaseApp.getInstance().options
     val result = mutableMapOf<String, FirebaseApp>()
 

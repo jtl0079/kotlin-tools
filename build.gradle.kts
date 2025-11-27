@@ -48,6 +48,7 @@ dependencies {
     // Firebase（正确方式）
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth.ktx)
+    implementation(libs.google.firebase.firestore.ktx)
 
     // Test
     testImplementation(libs.junit)

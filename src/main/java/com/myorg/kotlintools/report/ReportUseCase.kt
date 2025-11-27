@@ -1,10 +1,11 @@
 package com.myorg.kotlintools.report
 
 
-import com.myorg.kotlintools.ReportEntry
 import com.myorg.kotlintools.ReportStats
 import com.myorg.kotlintools.ReportSummary
 import com.myorg.kotlintools.ValueOperator
+import com.myorg.kotlintools.report.domain.model.ReportEntry
+import com.myorg.kotlintools.report.domain.repository.ReportRepository
 import java.time.Instant
 import java.time.YearMonth
 
@@ -135,15 +136,6 @@ class GetAllKeysUseCase<T>(
     fun execute(): Set<String> = repository.findKeys()
 }
 
-/**
- * 查询统计信息
- */
-class GetReportStatsUseCase<T>(
-    private val repository: ReportRepository<T>
-) : UseCase() {
-
-    fun execute(): ReportStats = repository.stats()
-}
 
 
 // ============================================================================

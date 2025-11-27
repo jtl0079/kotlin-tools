@@ -18,10 +18,11 @@ import java.time.YearMonth
  *
  * 注意：这个接口应该放在 domain 包下，实现放在 repository 包下
  */
-interface ReportRepository<T> {
+interface ReportRepository<T> : ReportCreateRepository<T>
+{
 
     // -------------------- 命令操作（Command） --------------------
-
+    // CRUD
     fun save(entry: ReportEntry<T>)
     fun saveBatch(entries: List<ReportEntry<T>>)
     fun settle(key: String, month: YearMonth)
@@ -38,5 +39,4 @@ interface ReportRepository<T> {
     fun findTotalValue(key: String, month: YearMonth): T
     fun findAllMonthlyValues(key: String): Map<YearMonth, T>
     fun findIncrementalEntries(key: String, month: YearMonth): List<ReportEntry<T>>
-    fun stats(): ReportStats
 }

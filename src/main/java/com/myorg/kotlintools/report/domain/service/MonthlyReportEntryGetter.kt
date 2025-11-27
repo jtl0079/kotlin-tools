@@ -5,8 +5,11 @@ import com.myorg.kotlintools.report.domain.model.ReportEntry
 import java.time.YearMonth
 
 /**
+ * 查询
  * key --> stamp --> value
  *
+ * 储存
+ * entry -> map -> bucket -> obj (report)
  * 传入 ReportEntry 后，每个不同的 stamp 对应一种 bucket，这样可以添加不同的 bucket 满足不同需求的 report 时间线，
  *
  */

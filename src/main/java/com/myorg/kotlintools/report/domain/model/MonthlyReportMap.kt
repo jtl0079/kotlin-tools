@@ -12,6 +12,8 @@ class MonthlyReportMap<T>(
 
     fun get(): MutableMap<YearMonth, T> = data
 
+    fun clear() = data.clear()
+
     fun addValue(monthlyReportEntry: MonthlyReportEntry<T>) {
         val month = monthlyReportEntry.yearMonthStamp
         val value = monthlyReportEntry.value
@@ -25,5 +27,12 @@ class MonthlyReportMap<T>(
 
     fun addValue(reportEntry: ReportEntry<T>) {
         addValue(reportEntry.toMonthlyReportEntry())
+    }
+
+    fun setValue(reportEntries: ReportEntries<T>){
+        clear()
+        reportEntries.get().forEach{ reportEntry ->
+            addValue(reportEntry)
+        }
     }
 }
