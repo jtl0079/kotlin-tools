@@ -8,3 +8,5 @@ data class InstantlyEntry<TKey, TValue>(
     override val timestamp: Instant,
     override val value: TValue
 ) : TimeEntryBase<TKey, Instant, TValue>
+
+

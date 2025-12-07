@@ -1,8 +1,11 @@
 package com.myorg.kotlintools.time.domain.model.base
 
 interface TimeDataBundleBase<
-        TRawTimeEntries: TimeEntriesBase<*>,
-        TKeyTimeMapGroup: KeyTimeMapBase<*, *>
+        TTimeEntries: TimeEntriesBase<*>,
+        TKeyTimeMap: KeyTimeMapBase<*, *>
         >
 {
+    val timeEntries: TTimeEntries
+    val keyTimeMap: TKeyTimeMap
 }
+
