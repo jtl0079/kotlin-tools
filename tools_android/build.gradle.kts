@@ -1,13 +1,13 @@
-/*
 // Module: kotlin-tools
 plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.android.library")
+
 }
 
 android {
-    namespace = "com.myorg.kotlintools"
+    namespace = "com.myorg.kotlintools.android"
     compileSdk = 36
 
     defaultConfig {
@@ -28,6 +28,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":kotlin-tools:tools_core"))
 
     // Core
     implementation(libs.androidx.core.ktx)
@@ -60,10 +61,3 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
-*/
-
-plugins {
-
-}
-
-

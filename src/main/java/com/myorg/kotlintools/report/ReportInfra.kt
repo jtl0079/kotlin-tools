@@ -91,6 +91,9 @@ class InMemoryReportRepository<T>(
     private val zone: ZoneId = ZoneId.systemDefault()
 ) : ReportRepository<T> {
 
+    override fun addReport(report: T) {
+        TODO("Not yet implemented")
+    }
     // 数据结构: key -> (YearMonth -> MonthlyBucket)
     private val storage =
         ConcurrentHashMap<String, ConcurrentHashMap<YearMonth, MonthlyBucket<T>>>()

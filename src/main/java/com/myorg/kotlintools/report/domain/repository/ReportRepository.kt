@@ -18,7 +18,7 @@ import java.time.YearMonth
  *
  * 注意：这个接口应该放在 domain 包下，实现放在 repository 包下
  */
-interface ReportRepository<T> : ReportCreateRepository<T>
+interface ReportRepository<T> : ReportRepositoryCreate<T>
 {
 
     // -------------------- 命令操作（Command） --------------------
