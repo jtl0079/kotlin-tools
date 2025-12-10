@@ -1,9 +1,10 @@
 package com.myorg.kotlintools.time.domain.model.instant
 
 import com.myorg.kotlintools.time.domain.model.base.TimeEntriesBase
+import java.time.Instant
 
 data class InstantlyEntries<TKey, TValue>(
     override val entries: MutableList<InstantlyEntry<TKey, TValue>> = mutableListOf()
-) : TimeEntriesBase<InstantlyEntry<TKey, TValue>> {
+) : TimeEntriesBase<InstantlyEntry<TKey, TValue>, Instant> {
 
 }

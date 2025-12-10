@@ -90,7 +90,7 @@ fun PieChart(
     // 计算每个值的比例, 总和
     val totalValue: Double = dataInput.sumOf { it.value }
     val eachValueRatio: List<Double> = dataInput.map { it.value / totalValue }
-    val colors: List<Color> = remember(dataInput.size) { generateDistinctColors(dataInput.size) }
+    val colors: List<Color> = remember(dataInput.size) { generateDistinctColors(dataInput.size, saturation = 0.75f, lightness = 0.55f) }
 
     // 动画：从 0 → 1
     val animatedProgress = animateFloatAsState(

@@ -1,8 +1,11 @@
 package com.myorg.kotlintools.time.domain.model.base
 
-interface TimeMapGroupBase<TMap : TimeMapBase<*, *>> {
+interface TimeMapGroupBase<
+        TValue,
+        TMap : TimeMapBase<*, TValue>
+        > {
 
-
+    fun sumValue(entry: TimeEntryBase<*, *, *>)
 }
 
 
