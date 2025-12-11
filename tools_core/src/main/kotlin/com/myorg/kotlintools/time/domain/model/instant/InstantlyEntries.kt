@@ -8,3 +8,12 @@ data class InstantlyEntries<TKey, TValue>(
 ) : TimeEntriesBase<InstantlyEntry<TKey, TValue>, Instant> {
 
 }
+
+
+fun main(){
+    print("[here start]\n")
+    val entries = InstantlyEntries<String, Int>()
+
+    entries.add(InstantlyEntry("key1", Instant.now(), 1))
+    print(entries.toString())
+}
