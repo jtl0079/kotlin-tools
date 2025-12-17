@@ -24,6 +24,7 @@ project/                                    # 顶层仓库根目录
 │               │   ├── datasource/      # Local / Remote 实现
 │               │   └── config/          # Lock / Thread / Network / Storage Config
 │               │
+│               ├── utils/
 │               └── common/ 
 │
 ├── tools_android/                         # ⭐Android 特化模块（ViewModel/UI/Android API）

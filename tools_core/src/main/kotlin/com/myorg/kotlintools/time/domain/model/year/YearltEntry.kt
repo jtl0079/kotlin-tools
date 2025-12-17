@@ -8,3 +8,8 @@ data class YearlyEntry<TKey, TValue>(
     override val timestamp: Year,
     override val value: TValue
 ) : TimeEntryBase<TKey, Year, TValue>
+{
+    override fun withValue(newValue: TValue): TimeEntryBase<TKey, Year, TValue> {
+        return copy(value = newValue)
+    }
+}

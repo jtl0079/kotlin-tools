@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -44,13 +45,24 @@ fun YearMonthRangeSelector(
     buttonBorder: BorderStroke = BorderStroke(1.dp, primaryColor),
     outlineColor: Color = MaterialTheme.colorScheme.outline,
     textColor: Color = MaterialTheme.colorScheme.onSurface,
+    onRangeChanged: (
+        startYear: Int,
+        startMonth: Int,
+        endYear: Int,
+        endMonth: Int,
+        mode: String
+    ) -> Unit = { _, _, _, _, _ -> }
+
+
 ) {
     val now = remember { LocalDate.now() }
+
     // 左上角 Start Date
     var startYear by rememberSaveable { mutableIntStateOf(now.year) }
     var startMonth by rememberSaveable { mutableIntStateOf(now.monthValue - 1) }
 
     // 下方模式：按年 or 按月
+    // 模式：Year / Month
     val options = listOf("Year", "Month")
     var mode by rememberSaveable { mutableStateOf("Year") }
 
@@ -61,6 +73,11 @@ fun YearMonthRangeSelector(
             startMonth,
             mode == "Year"
         )
+    }
+
+    // 每次变化都通知外部
+    LaunchedEffect(startYear, startMonth, endYear, endMonth, mode) {
+        onRangeChanged(startYear, startMonth, endYear, endMonth, mode)
     }
 
     Column(modifier) {

@@ -39,10 +39,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.myorg.kotlintools.android.ui.color.generateDistinctColors
+import com.myorg.kotlintools.time.domain.model.alltime.KeyAllTimeMap
+import com.myorg.kotlintools.time.domain.model.base.KeyTimeMapBase
+import com.myorg.kotlintools.time.domain.model.base.TimeEntryBase
+import com.myorg.kotlintools.time.domain.model.base.TimeMapGroupBase
 import java.util.Locale
+import kotlin.collections.map
 
 
-data class RawData(val name: String, val value: Double)
+data class PieChartData(val name: String, val value: Double)
+
+
 
 
 /**
@@ -82,10 +89,12 @@ data class RawData(val name: String, val value: Double)
 @Composable
 fun PieChart(
     modifier: Modifier = Modifier,
-    dataInput: List<RawData>,    // 传入一组数据
+    dataInput: List<PieChartData>,    // 传入一组数据
     panelSize: Dp = 200.dp,
     strokeWidth: Dp = 25.dp,
     wordsInsidePanel: String = "Words",
+    wordsInsidePanelColor: Color = Color.Black,
+    detailListWordsColor: Color = Color.Black,
 ) {
     // 计算每个值的比例, 总和
     val totalValue: Double = dataInput.sumOf { it.value }
@@ -157,7 +166,9 @@ fun PieChart(
             // 文本显示
             Text(
                 text = wordsInsidePanel,
-                style = MaterialTheme.typography.headlineMedium
+                style = MaterialTheme.typography.headlineMedium,
+                color = wordsInsidePanelColor,
+                textAlign = TextAlign.Center
             )
         }
         // ================================================
@@ -183,9 +194,10 @@ fun PieChart(
                     )
                     Text(
                         text = item.name,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
+                        color = detailListWordsColor
                     )
-                    Text(text = " : ")
+                    Text(text = " : ", color = detailListWordsColor)
                     Text(
                         text = "${item.value} (${
                             String.format(
@@ -195,7 +207,8 @@ fun PieChart(
                             )
                         })",
                         modifier = Modifier.weight(1f),
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        color = detailListWordsColor
                     )
                 }
             }
@@ -210,16 +223,16 @@ fun DemoPieChart(modifier: Modifier = Modifier) {
     PieChart(
         modifier = modifier,
         dataInput = listOf(
-            RawData("餐饮", 1200.0),
-            RawData("交通", 800.0),
-            RawData("娱乐", 600.0),
-            RawData("购物", 1500.0),
-            RawData("房租", 3000.0),
-            RawData("电子产品", 900.0),
-            RawData("bathroom ", 900.0),
-            RawData("0 开销", 900.0),
-            RawData("1 开销", 900.0),
-            RawData("其他", 900.0)
+            PieChartData("餐饮", 1200.0),
+            PieChartData("交通", 800.0),
+            PieChartData("娱乐", 600.0),
+            PieChartData("购物", 1500.0),
+            PieChartData("房租", 3000.0),
+            PieChartData("电子产品", 900.0),
+            PieChartData("bathroom ", 900.0),
+            PieChartData("0 开销", 900.0),
+            PieChartData("1 开销", 900.0),
+            PieChartData("其他", 900.0)
         ),
         panelSize = 300.dp,
         strokeWidth = 30.dp,
@@ -231,7 +244,7 @@ fun DemoPieChart(modifier: Modifier = Modifier) {
 @Composable
 fun qqq(
     modifier: Modifier,
-    mutableList: MutableList<RawData>
+    mutableList: MutableList<PieChartData>
 ) {
 
     // 每行显示 [String][" : "][Double]

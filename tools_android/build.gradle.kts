@@ -14,11 +14,11 @@ android {
         minSdk = 26
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_20
+        targetCompatibility = JavaVersion.VERSION_20
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "20"
     }
     buildFeatures {
         compose = true
@@ -39,6 +39,7 @@ dependencies {
 
     // Compose UI
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.runtime)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)

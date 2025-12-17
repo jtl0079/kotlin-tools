@@ -18,10 +18,19 @@ interface KeyTimeMapBase <TKey, TTimeMapGroup>{
     // UPDATE
     // --------------------------------
 
-    fun sumValue(entry: TimeEntryBase<*, *, *>)
+
+    fun sumToValue(entry: TimeEntryBase<*, *, *>)
+
+    fun setMapValue(entry: TimeEntryBase<*, *, *>)
+
 
 
     // --------------------------------
     // DELETE
     // --------------------------------
+
+    fun clear() = keyTimeMap.clear()
+
+
+
 }

@@ -5,7 +5,17 @@ import java.time.YearMonth
 interface TimeMapBase<TTime, TValue> {
     val timeMap: MutableMap<TTime, TValue>
 
+    // --------------------------------
+    // READ
+    // --------------------------------
 
+
+    fun printAll() = timeMap.forEach { println(it) }
+
+
+    // --------------------------------
+    // UPDATE
+    // --------------------------------
     fun sumValue(time: TTime, value: TValue) {
         val oldValue = timeMap[time]
 
@@ -17,6 +27,10 @@ interface TimeMapBase<TTime, TValue> {
         }
 
         timeMap[time] = newValue
+    }
+
+    fun setValue(time: TTime, value: TValue) {
+        timeMap[time] = value
     }
 }
 

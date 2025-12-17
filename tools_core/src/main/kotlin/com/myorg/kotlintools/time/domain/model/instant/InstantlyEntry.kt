@@ -7,6 +7,11 @@ data class InstantlyEntry<TKey, TValue>(
     override val key: TKey,
     override val timestamp: Instant,
     override val value: TValue
-) : TimeEntryBase<TKey, Instant, TValue>
+) : TimeEntryBase<TKey, Instant, TValue>{
+
+    override fun withValue(newValue: TValue): TimeEntryBase<TKey, Instant, TValue> {
+        return copy(value = newValue)
+    }
+}
 
 

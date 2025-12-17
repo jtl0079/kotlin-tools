@@ -5,7 +5,23 @@ interface TimeMapGroupBase<
         TMap : TimeMapBase<*, TValue>
         > {
 
-    fun sumValue(entry: TimeEntryBase<*, *, *>)
+    // --------------------------------
+    // CREATE
+    // --------------------------------
+
+
+    // --------------------------------
+    // READ
+    // --------------------------------
+
+    // --------------------------------
+    // UPDATE
+    // --------------------------------
+
+    fun sumToValue(entry: TimeEntryBase<*, *, *>)
+
+    fun setValue(entry: TimeEntryBase<*, *, *>)
+
 }
 
 

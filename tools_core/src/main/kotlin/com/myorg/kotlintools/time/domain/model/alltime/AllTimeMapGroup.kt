@@ -14,10 +14,27 @@ data class AllTimeMapGroup<TValue>(
     val yearlyMap: YearlyMap<TValue>
 ) : TimeMapGroupBase<TValue, MonthlyMap<TValue>> {
 
-    override fun sumValue(entry: TimeEntryBase<*, *, *>) {
+    fun getMonthlyValue(entry: TimeEntryBase<*, *, *>) : TValue?{
+
+        val timestamp = entry.timestamp as Instant
+        val zoned = timestamp.atZone(ZoneId.systemDefault())
+        val ym = YearMonth.from(zoned)
+
+        return monthlyMap.timeMap[ym]
+    }
+
+    fun getYearlyValue(entry: TimeEntryBase<*, *, *>) : TValue? {
+        val timestamp = entry.timestamp as Instant
+        val zoned = timestamp.atZone(ZoneId.systemDefault())
+        val year = zoned.year
+
+        return yearlyMap.timeMap[Year.of(year)]
+    }
+
+
+    override fun sumToValue(entry: TimeEntryBase<*, *, *>) {
         val timestamp = entry.timestamp as Instant
         val value = entry.value as TValue
-
 
         val zoned = timestamp.atZone(ZoneId.systemDefault())
         val ym = YearMonth.from(zoned)
@@ -28,5 +45,17 @@ data class AllTimeMapGroup<TValue>(
 
         // 写入 yearly
         yearlyMap.sumValue(Year.of(year), value)
+    }
+
+    override fun setValue(entry: TimeEntryBase<*, *, *>) {
+        val timestamp = entry.timestamp as Instant
+        val value = entry.value as TValue
+
+        val zoned = timestamp.atZone(ZoneId.systemDefault())
+        val ym = YearMonth.from(zoned)
+        val year = zoned.year
+
+        monthlyMap.setValue(ym, value)
+        yearlyMap.setValue(Year.of(year), value)
     }
 }

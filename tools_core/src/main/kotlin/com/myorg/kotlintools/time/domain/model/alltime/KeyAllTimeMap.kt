@@ -9,7 +9,24 @@ data class KeyAllTimeMap<TKey, TValue>(
     override val keyTimeMap: MutableMap<TKey, AllTimeMapGroup<TValue>> = mutableMapOf()
 ) : KeyTimeMapBase<TKey, AllTimeMapGroup<TValue>> {
 
-    override fun sumValue(entry: TimeEntryBase<*, *, *>) {
+    // --------------------------------
+    // CREATE
+    // --------------------------------
+
+
+    // --------------------------------
+    // READ
+    // --------------------------------
+
+    fun getMonthlyValue(entry: TimeEntryBase<*, *, *>) : TValue? = keyTimeMap[entry.key]?.getMonthlyValue(entry)
+
+    fun getYearlyValue(entry: TimeEntryBase<*, *, *>) : TValue? = keyTimeMap[entry.key]?.getYearlyValue(entry)
+
+
+    // --------------------------------
+    // UPDATE
+    // --------------------------------
+    override fun sumToValue(entry: TimeEntryBase<*, *, *>) {
         @Suppress("UNCHECKED_CAST")
         val key = entry.key as TKey
 
@@ -22,8 +39,29 @@ data class KeyAllTimeMap<TKey, TValue>(
         }
 
         // 委托给 AllTimeMapGroup 做时间分组与累加
-        group.sumValue(entry)
+        group.sumToValue(entry)
     }
+
+    override fun setMapValue(entry: TimeEntryBase<*, *, *>) {
+
+        val key = entry.key as TKey
+
+        // 取得或建立对应该 key 的 AllTimeMapGroup
+        val group = keyTimeMap.getOrPut(key) {
+            AllTimeMapGroup(
+                monthlyMap = MonthlyMap(),
+                yearlyMap = YearlyMap(mutableMapOf())
+            )
+        }
+
+
+        group.sumToValue(entry)
+
+
+    }
+
+
+
 }
 
 

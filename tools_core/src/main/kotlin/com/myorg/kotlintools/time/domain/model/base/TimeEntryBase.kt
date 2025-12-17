@@ -11,6 +11,9 @@ interface TimeEntryBase<
     val key: TKey
     val timestamp: TTimestamp
     val value: TValue
+
+    fun withValue(newValue: TValue): TimeEntryBase<TKey, TTimestamp, TValue>
+
 }
 
 
