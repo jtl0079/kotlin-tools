@@ -22,13 +22,15 @@ project/                                    # 顶层仓库根目录
 │               ├── infrastructure/
 │               │   ├── repository/      # Repository 实现
 │               │   ├── datasource/      # Local / Remote 实现
+│               │   ├── dto/
+│               │   ├── mapper/
 │               │   └── config/          # Lock / Thread / Network / Storage Config
 │               │
 │               ├── utils/
 │               └── common/ 
 │
 ├── tools_android/                         # ⭐Android 特化模块（ViewModel/UI/Android API）
-│   ├── build.gradle.kts
+│   ├── build.gradle.kts~~~~
 │   └── src/main/
 │       ├── AndroidManifest.xml
 │       └── java/com/myorg/kotlintools/android

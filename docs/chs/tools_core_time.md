@@ -12,6 +12,8 @@
 │               ├── infrastructure/
 │               │   ├── repository/      # Repository 实现
 │               │   ├── datasource/      # Local / Remote 实现
+│               │   ├── dto/
+│               │   ├── mapper/
 │               │   └── config/          # Lock / Thread / Network / Storage Config
 │               │
 │               ├── utils/
