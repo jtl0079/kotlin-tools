@@ -57,9 +57,10 @@ project/                                    # 顶层仓库根目录
 │   └── Modules/
 │
 ├── docs/                                  # 文档
-│   ├── architecture.md
-│   ├── modules.md
-│   └── development.md
+│   ├── eng/
+│   └── chs/
+│       ├── architecture.md
+│       └── modules.md
 │
 └── third_party/
 

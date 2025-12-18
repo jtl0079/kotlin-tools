@@ -3,8 +3,8 @@
 ```
 │           └── time
 │               ├── domain/
-│               │   ├── mapper/          # 纯数据结构转换（不涉及业务规则）
 │               │   ├── model/           # 实体（纯数据 + 核心行为）
+│               │   ├── mapper/          # 纯数据结构转换（不涉及业务规则）
 │               │   ├── repository/      # 仓库接口（契约）
 │               │   └── service/         # 纯领域服务（跨实体逻辑）
 │               │
@@ -14,6 +14,7 @@
 │               │   ├── datasource/      # Local / Remote 实现
 │               │   └── config/          # Lock / Thread / Network / Storage Config
 │               │
+│               ├── utils/
 │               └── common/ 
 ```
 
@@ -57,6 +58,7 @@
 │               │   ├── datasource/      # Local / Remote 实现
 │               │   └── config/          # Lock / Thread / Network / Storage Config
 │               │
+│               ├── utils/
 │               └── common/ 
 ```
 

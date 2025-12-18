@@ -1,24 +1,19 @@
-# to user
-
-# kotlin-tools
-
-
-一个可复用的 Kotlin / Android 工具库，可作为 **独立仓库** 使用，也可通过 **Git Submodule** 集成进多个 Android 项目。
+# To User
 
 ---
 
-## 📦 引入方式
+## 📦 Integration
 
-### ✅ 方式一：作为 Git Submodule 引用（推荐）
+### Option 1: Add as a Git Submodule (Recommended)
 
-在你的 Android 主项目根目录执行：
+Run the following commands in the root directory of your Android project:
 
 ```bash
-git submodule add https://github.com/你的账号/kotlin-tools.git libs/kotlin-tools
+git submodule add https://github.com/your-account/kotlin-tools.git libs/kotlin-tools
 git submodule update --init --recursive
 ```
 
-项目结构将变为：
+Your project structure should look like this:
 
 ```
 YourProject
@@ -28,118 +23,81 @@ YourProject
 
 ---
 
-## 🔧 Android 工程配置步骤
+## 🧩 Module Overview
 
-### 1. 在 settings.gradle.kts 中注册模块
+* **tools_core**: Platform-independent Kotlin utilities (pure Kotlin / JVM)
+* **tools_android**: Android-specific utilities and extensions, depends on Android SDK
+
+---
+
+## 🔧 Android Project Configuration
+
+### 1. Register modules in `settings.gradle.kts`
+
+> Choose **one** of the following approaches. **Do not use both at the same time.**
+
+#### Option A: Register modules by actual directory structure (Recommended)
 
 ```kotlin
-include(":libs:kotlin-tools")
+include(":libs:kotlin-tools:tools_core")
+include(":libs:kotlin-tools:tools_android")
+```
 
-或
+#### Option B: Register `kotlin-tools` as a unified root module
 
+```kotlin
 include(":kotlin-tools")
 project(":kotlin-tools").projectDir = file("libs/kotlin-tools")
 
+include(":kotlin-tools:tools_core")
+include(":kotlin-tools:tools_android")
 ```
 
 ---
 
-### 2. 在 app/build.gradle.kts 中添加依赖
+### 2. Add dependencies in `app/build.gradle.kts`
 
 ```kotlin
 dependencies {
-    implementation(project(":libs:kotlin-tools"))
+    implementation(project(":kotlin-tools:tools_core"))
+    implementation(project(":kotlin-tools:tools_android"))
 }
 ```
 
-Sync 项目后即可使用该库中的所有代码。
+Sync the project and the library will be ready to use.
 
 ---
 
-## 🧱 模块结构要求
+# To Editor
 
-kotlin-tools 必须是标准 Android Library 模块结构：
+## 🔄 Updating the Submodule
 
-```
-kotlin-tools
-├── src/main/java/
-│   └── com/yourorg/kotlintools/
-│       └── YourTool.kt
-├── build.gradle.kts
-└── AndroidManifest.xml
-```
+### Pull latest changes from the submodule remote
 
----
-
-## 🛠 示例 build.gradle.kts（kotlin-tools）
-
-```kotlin
-plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-}
-
-android {
-    namespace = "com.yourorg.kotlintools"
-    compileSdk = 36
-
-    defaultConfig {
-        minSdk = 21
-    }
-}
-```
-
----
-
-## ✅ 使用示例
-
-### 在 kotlin-tools 中定义方法
-
-```kotlin
-package com.yourorg.kotlintools
-
-fun helloTools(): String {
-    return "Hello from kotlin-tools"
-}
-```
-
-### 在主项目中调用
-
-```kotlin
-import com.yourorg.kotlintools.helloTools
-
-val msg = helloTools()
-```
-
----
-
-## 🔄 更新模块
-
-进入主项目根目录执行：（上传子模块）
+Run the following command in the root directory of the main project:
 
 ```bash
 git submodule update --remote --merge
 ```
 
-进入主项目根目录执行：（上传子模块和主模块）：
+---
+
+### Commit and push changes for both submodule and main project
+
+Run the following commands in the root directory of the main project:
 
 ```bash
 git submodule foreach --recursive "git add .; git commit -m 'auto update submodule'; git push"
+
 git add .
 git commit -m "update all"
 git push
 ```
 
-
 ---
 
-## 🧠 设计特点
+## ⚠️ Notes
 
-* ✅ 独立 Git 仓库
-* ✅ 可被多个项目共享
-* ✅ 支持版本控制
-* ✅ 工业级模块化架构
-
----
-
-如需发布到 Maven 或 JitPack，可在此基础上进一步扩展发布配置。
+* The submodule and the main project have **separate Git histories**
+* After modifying submodule code, you must commit and push changes **inside the submodule first**
+* The main project only records a **commit reference** to the submodule
